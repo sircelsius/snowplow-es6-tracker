@@ -36,6 +36,10 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
+# dist and coverage
+dist/
+coverage/
+
 # Idea folder
 .idea
 
