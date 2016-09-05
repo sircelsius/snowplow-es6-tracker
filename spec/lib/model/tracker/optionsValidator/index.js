@@ -9,7 +9,7 @@ describe("OptionValidator", () => {
         expect(validateOptions({})).to.be.false;
     });
 
-    it('should pass on default options', () => {
-        // expect(validateOptions(DEFAULT_OPTIONS)).to.be.true
+    it('should fail on default options', () => {
+        expect(validateOptions(DEFAULT_OPTIONS)).to.be.false
     })
 });
