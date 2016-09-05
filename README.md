@@ -10,7 +10,7 @@ This project aims to take the features described in the Snowplow [Javascript Tra
 
 The aim of this is to have a JS tracker for Snowplow that uses a more modern stack than the official one:
 
-  * ES6 features (classes, import/export, ...)
+  * ES6 features (classes, import/export, Promise, ...)
   * Babel transpiling of ES6 to ES5
   * Webpack bundling
   * Karma tests
@@ -19,4 +19,10 @@ The aim of this is to have a JS tracker for Snowplow that uses a more modern sta
 
   1. v0.1.0
     * Tracker dictionary
-    * `trackPageView` and `trackStructEvent` (without contexts)
+    * `trackPageView` and `trackStructEvent` (POST, no contexts)
+  1. v0.2.0
+    * Tracker contexts (predefined contexts)
+    * GET trackers
+    * `trackPageView` and `trackStructEvent` with contexts
+  1. v1.0.0:
+    * Full replica of [snowplow/snowplow-javascript-tracker](https://github.com/snowplow/snowplow-javascript-tracker/)
