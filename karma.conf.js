@@ -3,33 +3,31 @@ var path = require('path');
 
 module.exports = function (config) {
     config.set({
-        browsers: [ 'PhantomJS' ], //run in PhantomJS
-        singleRun: true, //just run once by default
-        frameworks: [ 'mocha' ], //use the mocha test framework
+        browsers: [ 'PhantomJS' ],
+        singleRun: true,
+        frameworks: [ 'mocha' ],
         files: [
-            'spec/index.js', //just load this file
+            'spec/index.js',
             { pattern: 'lib/**/*', watched: false, included: false, served: true, nocache: true },
         ],
         plugins: [ 'karma-phantomjs-launcher', 'karma-chai', 'karma-mocha',
-            'karma-webpack', 'karma-coverage',
-            'karma-mocha-reporter', 'karma-sourcemap-loader'
+            'karma-webpack', 'karma-coverage', 'karma-mocha-reporter'
         ],
         preprocessors: {
-            'spec/index.js': [ 'webpack', 'sourcemap' ], //preprocess with webpack
+            'spec/index.js': [ 'webpack' ], //preprocess with webpack
         },
         reporters: [ 'mocha', 'coverage' ], //report results in this format
-        webpack: { //kind of a copy of your webpack config
-            // devtool: 'sourcemap', //just do inline source maps instead of the default
+        webpack: {
             module: {
                 loaders: [{
                     test: /\.js$/,
-                    loader: 'babel-loader',
+                    loader: 'babel',
                     exclude: /node_modules/
                 }]
             }
         },
         webpackServer: {
-            noInfo: true //please don't spam the console when running in karma!
+            noInfo: true
         },
         coverageReporter: {
             dir: 'coverage',
@@ -40,12 +38,12 @@ module.exports = function (config) {
                     file: 'cobertura.txt'
                 },
                 {
-                    type: 'html',
-                    subdir: 'report-html'
-                },
-                {
                     type: 'lcov',
                     subdir: '.'
+                },
+                {
+                    type: 'html',
+                    subdir: 'report-html'
                 }
             ]
         }

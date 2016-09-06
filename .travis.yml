@@ -8,3 +8,6 @@ before_install:
 
 script:
   - docker run --rm sircelsius/snowplow-es6-tracker
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
