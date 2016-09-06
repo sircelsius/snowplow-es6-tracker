@@ -1,0 +1,4 @@
+test:
+  build: .
+  command: bash -c "npm test && bash <(curl -s https://codecov.io/bash)"
+    
