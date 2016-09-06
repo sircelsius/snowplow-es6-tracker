@@ -21,7 +21,7 @@ module.exports = function (config) {
             module: {
                 loaders: [{
                     test: /\.js$/,
-                    loader: 'babel',
+                    loaders: ['babel', 'eslint'],
                     exclude: /node_modules/
                 }]
             }

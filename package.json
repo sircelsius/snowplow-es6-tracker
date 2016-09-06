@@ -22,7 +22,6 @@
     "babel-loader": "^6.2.5",
     "babel-plugin-istanbul": "^2.0.0",
     "babel-preset-es2015": "^6.14.0",
-    "chai": "^3.5.0",
     "eslint": "^3.4.0",
     "eslint-config-airbnb": "^10.0.1",
     "eslint-loader": "^1.5.0",
@@ -42,6 +41,8 @@
     "webpack": "^1.13.2"
   },
   "dependencies": {
+    "chai": "^3.5.0",
+    "immu": "^2.0.1",
     "lodash": "^4.15.0"
   }
 }
