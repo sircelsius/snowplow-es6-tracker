@@ -10,5 +10,6 @@
       	}]
       ]
     }
-  }
+  },
+  "plugins": [ "transform-regenerator", "transform-runtime" ]
 }
