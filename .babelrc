@@ -12,7 +12,6 @@
     }
   },
   "plugins": [ 
-    "transform-regenerator",
     "transform-runtime",
     "es6-promise"
   ]

@@ -8,7 +8,7 @@ const expect = chai.expect
 
 describe( 'Tracker', () => {
     before( () => {
-        fetchMock.get( 'foo.bar', { hello: 'world' } )
+        fetchMock.get( '/foo.bar', { hello: 'world' } )
     } )
 
     it( 'Should be instanciated properly', () => {
@@ -19,6 +19,10 @@ describe( 'Tracker', () => {
     it( 'Should trigger fetch', () => {
         const t = new Tracker( 'tracker', 'foo.bar', { appId: 'baz' } )
 
-        expect( t.trackPageView() ).to.be.eventually.deep.equal( { hello: 'world' } )
+        expect( t.trackPageView() ).to.eventually.deep.equal( { hello: 'world' } )
+    } )
+
+    after( () => {
+        fetchMock.restore()
     } )
 } )
