@@ -8,7 +8,6 @@ polyfill()
 
 describe( 'OptionValidator', () => {
     it( 'should fail on empty object', () => {
-        
         ( validateOptions( {} ) ).should.equal( 'appId' )
     } )
 

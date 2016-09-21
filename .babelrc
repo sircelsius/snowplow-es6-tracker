@@ -11,5 +11,9 @@
       ]
     }
   },
-  "plugins": [ "transform-regenerator", "transform-runtime" ]
+  "plugins": [ 
+    "transform-regenerator",
+    "transform-runtime",
+    "es6-promise"
+  ]
 }
