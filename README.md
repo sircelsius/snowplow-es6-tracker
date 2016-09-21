@@ -1,4 +1,4 @@
-# snowplow-es6-tracker [![Build Status](https://travis-ci.org/sircelsius/snowplow-es6-tracker.svg?branch=master)](https://travis-ci.org/sircelsius/snowplow-es6-tracker) [![codecov](https://codecov.io/gh/sircelsius/snowplow-es6-tracker/branch/master/graph/badge.svg)](https://codecov.io/gh/sircelsius/snowplow-es6-tracker)[![Minified size](http://img.badgesize.io/https://github.com/sircelsius/snowplow-es6-tracker/master/dist/bundle.js)]
+# snowplow-es6-tracker [![Build Status](https://travis-ci.org/sircelsius/snowplow-es6-tracker.svg?branch=master)](https://travis-ci.org/sircelsius/snowplow-es6-tracker) [![codecov](https://codecov.io/gh/sircelsius/snowplow-es6-tracker/branch/master/graph/badge.svg)](https://codecov.io/gh/sircelsius/snowplow-es6-tracker)[![Minified size](http://img.badgesize.io/https://github.com/sircelsius/snowplow-es6-tracker/master/dist/bundle.js)](http://img.badgesize.io/https://github.com/sircelsius/snowplow-es6-tracker/master/dist/bundle.js)
 
 > ES6 tracker for snowplowanalytics.com
 
