@@ -1,6 +1,7 @@
 FROM node:5.11
 MAINTAINER <Marc Bramaud m.duboucheron@gmail.com>
 
+RUN npm i -g phantomjs
 WORKDIR /tmp
 COPY ./package.json /tmp
 RUN npm config set registry http://registry.npmjs.org/
