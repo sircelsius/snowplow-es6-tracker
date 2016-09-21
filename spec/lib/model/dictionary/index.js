@@ -24,16 +24,16 @@ describe( 'TrackerDictionary', () => {
 
     it( 'should fail to register tracker when parameter is missing ', () => {
         const d = new TrackerDictionary()
-        
+
         return d.newTracker().should.be.rejectedWith( 'Invalid parameter' )
-    })
+    } )
 
     it( 'should fail to register already existing tracker', () => {
         const d = new TrackerDictionary()
         const t = new Tracker( 'tracker', 'foo.bar', { appId: 'baz' } )
-        
+
         return d.newTracker( t )
-            .then( d => d.newTracker( t ) )
+            .then( d1 => d1.newTracker( t ) )
             .should.be.rejectedWith( 'Tracker exists' )
     } )
 } )

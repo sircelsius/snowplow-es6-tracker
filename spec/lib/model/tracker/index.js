@@ -18,7 +18,7 @@ describe( 'Tracker', () => {
 
     it( 'Should trigger fetch', () => {
         const t = new Tracker( 'tracker', 'foo.bar', { appId: 'baz' } )
-        
+
         expect( t.trackPageView() ).to.be.eventually.deep.equal( { hello: 'world' } )
     } )
 } )
