@@ -41,7 +41,6 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.0",
     "mocha": "^3.0.2",
-    "phantomjs": "^2.1.7",
     "webpack": "^1.13.2"
   },
   "dependencies": {
