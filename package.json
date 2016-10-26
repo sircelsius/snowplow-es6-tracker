@@ -50,6 +50,7 @@
     "fetch-mock": "^5.1.5",
     "immu": "^2.0.1",
     "isomorphic-fetch": "^2.2.1",
+    "karma-chai": "^0.1.0",
     "lodash": "^4.15.0"
   }
 }
