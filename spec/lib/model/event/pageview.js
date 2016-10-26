@@ -5,6 +5,7 @@ import PageView from './../../../../lib/model/event/pageView'
 chai.use( chaiAsPromised )
 const expect = chai.expect
 
+/* eslint-disable no-unused-expressions */
 describe( 'PageView', () => {
     it( 'should be initialized', () => {
         const e = new PageView( 'title', [ 'context' ] )
@@ -13,14 +14,11 @@ describe( 'PageView', () => {
         expect( e.title ).to.equal( 'title' )
     } )
 
-    it( 'should fail to produce GET string', () => {
+    it( 'should produce a valid GET string', ( done ) => {
         const e = new PageView()
 
-        e.toGetString()
-        .then( res => {
-            console.log( JSON.stringify( res ) )
-        } )
-        // return e.toGetString().should.be.rejectedWith( 'toGetString not implemented' )
+        expect( e.toGetString() ).to.eventually.equal( `stm=${ e.timestamp }&e=pv` )
+            .and.notify( done )
     } )
 
     it( 'should fail to produce a POST body', () => {
@@ -29,3 +27,4 @@ describe( 'PageView', () => {
         return e.toPostBody().should.be.rejectedWith( 'toPostBody not implemented' )
     } )
 } )
+/* eslint-enable no-unused-expressions */
