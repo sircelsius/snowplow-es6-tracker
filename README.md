@@ -1,6 +1,6 @@
 # snowplow-es6-tracker [![Build Status](https://travis-ci.org/sircelsius/snowplow-es6-tracker.svg?branch=master)](https://travis-ci.org/sircelsius/snowplow-es6-tracker) [![codecov](https://codecov.io/gh/sircelsius/snowplow-es6-tracker/branch/master/graph/badge.svg)](https://codecov.io/gh/sircelsius/snowplow-es6-tracker) [![Minified size](http://img.badgesize.io/sircelsius/snowplow-es6-tracker/master/dist/bundle.js)](http://img.badgesize.io/sircelsius/snowplow-es6-tracker/master/dist/bundle.js)
 
-> ES6 tracker for snowplowanalytics.com
+> ES6 tracker for [snowplowanalytics.com](www.snowplowanalytics.com)
 
 This project aims to take the features described in the Snowplow [Javascript Tracker Wiki](https://github.com/snowplow/snowplow/wiki/Javascript-Tracker) and port them to an entirely new project written with the latest JS features.
 
