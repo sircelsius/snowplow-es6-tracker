@@ -8,16 +8,23 @@ const expect = chai.expect
 /* eslint-disable no-unused-expressions */
 describe( 'PageView', () => {
     it( 'should be initialized', () => {
-        const e = new PageView( 'title', [ 'context' ] )
+        const e = new PageView( {}, 'title', [ 'context' ] )
 
         expect( e.timestamp ).to.be.defined
         expect( e.title ).to.equal( 'title' )
     } )
 
     it( 'should produce a valid GET string', ( done ) => {
-        const e = new PageView()
+        const e = new PageView( {
+            name: 'foo',
+            options: {
+                appId: 'bar',
+                platform: 'baz',
+            },
+        } )
 
-        expect( e.toGetString() ).to.eventually.equal( `stm=${ e.timestamp }&e=pv` )
+        expect( e.toGetString() ).to
+            .eventually.equal( `tna=foo&aid=bar&p=baz&stm=${ e.timestamp }&e=pv` )
             .and.notify( done )
     } )
 

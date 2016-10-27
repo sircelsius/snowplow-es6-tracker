@@ -9,13 +9,21 @@ describe( 'Event', () => {
     it( 'should have a timestamp', () => {
         const e = new Event()
 
-        expect( e ).to.have.key( 'timestamp' )
+        expect( e.timestamp ).to.be.defined
     } )
 
-    it( 'should fail to produce GET string', () => {
-        const e = new Event()
+    it( 'should fail to produce GET string', ( done ) => {
+        const e = new Event( {
+            name: 'foo',
+            options: {
+                appId: 'bar',
+                platform: 'baz',
+            },
+        } )
 
-        return e.toGetString().should.be.rejectedWith( 'toGetString not implemented' )
+        expect( e.toGetString() ).to
+            .eventually.equal( `tna=foo&aid=bar&p=baz&stm=${ e.timestamp }` )
+            .and.notify( done )
     } )
 
     it( 'should fail to produce a POST body', () => {

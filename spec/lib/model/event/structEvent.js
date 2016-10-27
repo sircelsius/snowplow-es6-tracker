@@ -8,20 +8,28 @@ const expect = chai.expect
 /* eslint-disable no-unused-expressions */
 describe( 'StructEvent', () => {
     it( 'should be initialized', () => {
-        const e = new StructEvent( 'category', [ 'context' ] )
+        const e = new StructEvent( {}, 'category', [ 'context' ] )
 
         expect( e.timestamp ).to.be.defined
         expect( e.category ).to.equal( 'category' )
     } )
 
-    it( 'should fail to produce GET string', () => {
-        const e = new StructEvent()
+    it( 'should produce a valid GET string', ( done ) => {
+        const e = new StructEvent( {
+            name: 'foo',
+            options: {
+                appId: 'bar',
+                platform: 'baz',
+            },
+        } )
 
-        return e.toGetString().should.be.rejectedWith( 'toGetString not implemented' )
+        e.toGetString().should
+            .eventually.equal( `tna=foo&aid=bar&p=baz&stm=${ e.timestamp }` )
+            .and.notify( done )
     } )
 
     it( 'should produce a valid POST body', ( done ) => {
-        const e = new StructEvent( 'category', 'action', 'label', 'property', 'value' )
+        const e = new StructEvent( {}, 'category', 'action', 'label', 'property', 'value' )
 
         e.toPostBody().should.eventually.deep.equal( {
             data: {
