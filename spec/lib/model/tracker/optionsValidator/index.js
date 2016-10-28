@@ -52,13 +52,14 @@ describe( 'OptionValidator', () => {
             .to.equal( true )
     } )
 
-    it( 'should invalidate when post is true and bufferSize is not set', () => {
+    it( 'should invalidate when post is true and bufferSize is invalid', () => {
         const opts = Object.assign( {}, DEFAULT_OPTIONS,
         {
             appId: 'foo',
             post: true,
+            bufferSize: 'a',
         } )
         expect( validateOptions( opts ) )
-            .to.equal( false )
+            .to.equal( 'bufferSize' )
     } )
 } )
