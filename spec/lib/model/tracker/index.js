@@ -37,4 +37,10 @@ describe( 'Tracker', () => {
         t.trackEvent( event )
         expect( stub ).to.have.been.calledWith( event, t )
     } )
+
+    it( 'Should not have a cross-domain linker', () => {
+        const t = new Tracker( 'tracker', 'foo.bar', { appId: 'baz' } )
+
+        expect( t.options.crossDomainLinker() ).to.equal( false )
+    } )
 } )

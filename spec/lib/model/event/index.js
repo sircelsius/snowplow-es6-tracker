@@ -9,6 +9,7 @@ describe( 'Event', () => {
     it( 'should have a timestamp', () => {
         const e = new Event()
 
+        // eslint-disable-next-line no-unused-expressions
         expect( e.timestamp ).to.be.defined
     } )
 
@@ -26,9 +27,10 @@ describe( 'Event', () => {
             .and.notify( done )
     } )
 
-    it( 'should fail to produce a POST body', () => {
+    it( 'should fail to produce a POST body', ( done ) => {
         const e = new Event()
 
-        return e.toPostBody().should.be.rejectedWith( 'toPostBody not implemented' )
+        expect( e.toPostBody() ).to.be.rejectedWith( 'toPostBody not implemented' )
+            .and.notify( done )
     } )
 } )

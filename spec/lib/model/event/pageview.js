@@ -28,10 +28,28 @@ describe( 'PageView', () => {
             .and.notify( done )
     } )
 
-    it( 'should fail to produce a POST body', () => {
+    it( 'should produce a valid GET string', ( done ) => {
+        const e = new PageView( {
+            name: 'foo',
+            options: {
+                appId: 'bar',
+                platform: 'baz',
+            },
+        },
+        'foo',
+        [ 'bar' ]
+        )
+
+        expect( e.toGetString() ).to
+            .eventually.equal( `tna=foo&aid=bar&p=baz&stm=${ e.timestamp }&e=pv&page=foo&co=bar` )
+            .and.notify( done )
+    } )
+
+    it( 'should fail to produce a POST body', ( done ) => {
         const e = new PageView()
 
-        return e.toPostBody().should.be.rejectedWith( 'toPostBody not implemented' )
+        expect( e.toPostBody() ).to.be.rejectedWith( 'toPostBody not implemented' )
+            .and.notify( done )
     } )
 } )
 /* eslint-enable no-unused-expressions */

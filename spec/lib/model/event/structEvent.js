@@ -23,7 +23,7 @@ describe( 'StructEvent', () => {
             },
         } )
 
-        e.toGetString().should
+        expect( e.toGetString() ).to
             .eventually.equal( `tna=foo&aid=bar&p=baz&stm=${ e.timestamp }` )
             .and.notify( done )
     } )
@@ -31,7 +31,7 @@ describe( 'StructEvent', () => {
     it( 'should produce a valid POST body', ( done ) => {
         const e = new StructEvent( {}, 'category', 'action', 'label', 'property', 'value' )
 
-        e.toPostBody().should.eventually.deep.equal( {
+        expect( e.toPostBody() ).to.eventually.deep.equal( {
             data: {
                 e: 'se',
                 se_ca: 'category',
@@ -40,7 +40,8 @@ describe( 'StructEvent', () => {
                 se_pr: 'property',
                 se_va: 'value',
             },
-        } ).notify( done )
+        } )
+            .and.notify( done )
     } )
 } )
 /* eslint-enable no-unused-expressions */

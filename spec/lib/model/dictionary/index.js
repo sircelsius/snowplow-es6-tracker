@@ -15,25 +15,27 @@ describe( 'TrackerDictionary', () => {
         expect( d1.ts ).to.equal( d2.ts )
     } )
 
-    it( 'should only be able to register trackers', () => {
+    it( 'should only be able to register trackers', ( done ) => {
         const d = new TrackerDictionary()
         const t = new Tracker( 'tracker', 'foo.bar', { appId: 'baz' } )
 
-        return d.newTracker( t ).should.be.fulfilled
+        expect( d.newTracker( t ) ).to.eventually.be.fulfilled
+            .and.notify( done )
     } )
 
-    it( 'should fail to register tracker when parameter is missing ', () => {
+    it( 'should fail to register tracker when parameter is missing ', ( done ) => {
         const d = new TrackerDictionary()
 
-        return d.newTracker().should.be.rejectedWith( 'Invalid parameter' )
+        expect( d.newTracker() ).to.eventually.be.rejectedWith( 'Invalid parameter' )
+            .and.notify( done )
     } )
 
-    it( 'should fail to register already existing tracker', () => {
+    it( 'should fail to register already existing tracker', ( done ) => {
         const d = new TrackerDictionary()
         const t = new Tracker( 'tracker', 'foo.bar', { appId: 'baz' } )
 
-        return d.newTracker( t )
-            .then( d1 => d1.newTracker( t ) )
-            .should.be.rejectedWith( 'Tracker exists' )
+        expect( d.newTracker( t ).then( d1 => d1.newTracker( t ) ) )
+            .to.eventually.be.rejectedWith( 'Tracker exists' )
+            .and.notify( done )
     } )
 } )

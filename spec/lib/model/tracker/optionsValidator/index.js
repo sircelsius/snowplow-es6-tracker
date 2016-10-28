@@ -3,22 +3,62 @@ import { polyfill } from 'es6-object-assign'
 import validateOptions from './../../../../../lib/model/tracker/optionsValidator'
 import { DEFAULT_OPTIONS } from './../../../../../lib/model/tracker/options'
 
-chai.should()
+const expect = chai.expect
 polyfill()
 
 describe( 'OptionValidator', () => {
     it( 'should fail on empty object', () => {
-        ( validateOptions( {} ) ).should.equal( 'appId' )
+        expect( validateOptions( {} ) ).to.equal( 'appId' )
     } )
 
     it( 'should fail on default options', () => {
-        ( validateOptions( DEFAULT_OPTIONS ) )
-            .should.equal( 'appId' )
+        expect( validateOptions( DEFAULT_OPTIONS ) )
+            .to.equal( 'appId' )
     } )
 
     it( 'should pass on default options with appId set', () => {
         const opts = Object.assign( {}, { appId: 'foo' }, DEFAULT_OPTIONS )
-        validateOptions( opts )
-            .should.equal( true )
+        expect( validateOptions( opts ) )
+            .to.equal( true )
+    } )
+
+    it( 'should pass when cookieDomain is a String', () => {
+        const opts = Object.assign( {}, DEFAULT_OPTIONS,
+        {
+            appId: 'foo',
+            cookieDomain: 'bar',
+        } )
+        expect( validateOptions( opts ) )
+            .to.equal( true )
+    } )
+
+    it( 'should pass when cookieDomain is null', () => {
+        const opts = Object.assign( {}, DEFAULT_OPTIONS,
+        {
+            appId: 'foo',
+            cookieDomain: null,
+        } )
+        expect( validateOptions( opts ) )
+            .to.equal( true )
+    } )
+
+    it( 'should pass when userFingerprintSeed is a function', () => {
+        const opts = Object.assign( {}, DEFAULT_OPTIONS,
+        {
+            appId: 'foo',
+            userFingerprintSeed: () => 1,
+        } )
+        expect( validateOptions( opts ) )
+            .to.equal( true )
+    } )
+
+    it( 'should invalidate when post is true and bufferSize is not set', () => {
+        const opts = Object.assign( {}, DEFAULT_OPTIONS,
+        {
+            appId: 'foo',
+            post: true,
+        } )
+        expect( validateOptions( opts ) )
+            .to.equal( false )
     } )
 } )
