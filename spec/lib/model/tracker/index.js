@@ -1,14 +1,27 @@
 import chai from 'chai'
 import chaiAsPromised from 'chai-as-promised'
-import fetchMock from 'fetch-mock'
-import { Tracker } from './../../../../lib/model/tracker'
+import sinon from 'sinon'
+import sinonChai from 'sinon-chai'
 
 chai.use( chaiAsPromised )
+chai.use( sinonChai )
 const expect = chai.expect
 
 describe( 'Tracker', () => {
-    before( () => {
-        fetchMock.get( '/foo.bar', { hello: 'world' } )
+    let Tracker
+    let stub
+
+    beforeEach( () => {
+        // eslint-disable-next-line global-require
+        const inject = require( 'inject!./../../../../lib/model/tracker' )
+
+        stub = sinon.spy()
+
+        Tracker = inject( {
+            './../../service/trackingService': {
+                track: stub,
+            },
+        } ).Tracker
     } )
 
     it( 'Should be instanciated properly', () => {
@@ -19,10 +32,15 @@ describe( 'Tracker', () => {
     it( 'Should trigger fetch', () => {
         const t = new Tracker( 'tracker', 'foo.bar', { appId: 'baz' } )
 
-        expect( t.trackPageView() ).to.eventually.deep.equal( { hello: 'world' } )
+        const event = {}
+
+        t.trackEvent( event )
+        expect( stub ).to.have.been.calledWith( event, t )
     } )
 
-    after( () => {
-        fetchMock.restore()
+    it( 'Should not have a cross-domain linker', () => {
+        const t = new Tracker( 'tracker', 'foo.bar', { appId: 'baz' } )
+
+        expect( t.options.crossDomainLinker() ).to.equal( false )
     } )
 } )
