@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 
-var jsEntryPath = path.resolve(__dirname, '..', 'lib', 'index.js');
+var jsEntryPath = path.resolve(__dirname, 'snow.js');
 var htmlEntryPath = path.resolve(__dirname, '.', 'index.html');
 var buildPath = path.resolve(__dirname, '..', 'public', 'build');
 
