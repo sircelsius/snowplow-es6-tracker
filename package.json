@@ -1,10 +1,12 @@
 {
   "name": "snowplow-es6-tracker",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "ES6 tracker for Snowplow",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/karma/bin/karma start"
+    "test": "NODE_ENV=test ./node_modules/karma/bin/karma start",
+    "lint": "NODE_ENV=test ./node_modules/eslint/bin/eslint.js -c .eslintrc lib",
+    "start": "node server"
   },
   "repository": {
     "type": "git",
