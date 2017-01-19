@@ -55,4 +55,12 @@ describe( 'TrackerDictionary', () => {
             .to.eventually.be.rejectedWith( 'Tracker not found' )
             .and.notify( done )
     } )
+
+    it( 'should track pageview by default', ( done ) => {
+        const d = new TrackerDictionary()
+
+        expect( d.track( ) )
+            .to.be.fulfilled
+            .notify( done )
+    } )
 } )
