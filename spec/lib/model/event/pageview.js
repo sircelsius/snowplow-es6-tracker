@@ -1,6 +1,7 @@
 import chai from 'chai'
 import chaiAsPromised from 'chai-as-promised'
 import PageView from './../../../../lib/model/event/pageView'
+import { version } from './../../../../package.json'
 
 chai.use( chaiAsPromised )
 const expect = chai.expect
@@ -46,9 +47,23 @@ describe( 'PageView', () => {
     } )
 
     it( 'should fail to produce a POST body', ( done ) => {
-        const e = new PageView()
+        const e = new PageView( {
+            name: 'foo',
+            options: {
+                appId: 'bar',
+                platform: 'baz',
+            },
+        } )
 
-        expect( e.toPostBody() ).to.be.rejectedWith( 'toPostBody not implemented' )
+        expect( e.toPostBody() ).to
+            .eventually.deep.equal( {
+                stm: e.timestamp,
+                e: 'pv',
+                aid: 'bar',
+                tna: 'foo',
+                tv: `es6-${ version }`,
+                p: 'baz',
+            } )
             .and.notify( done )
     } )
 } )

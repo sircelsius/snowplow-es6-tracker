@@ -38,4 +38,21 @@ describe( 'TrackerDictionary', () => {
             .to.eventually.be.rejectedWith( 'Tracker exists' )
             .and.notify( done )
     } )
+
+    it( 'should be able to get existing trackers', ( done ) => {
+        const d = new TrackerDictionary()
+        const t = new Tracker( 'tracker2', 'foo.bar', { appId: 'baz' } )
+
+        expect( d.newTracker( t ).then( d1 => d1.getTracker( t.getName() ) ) )
+            .to.eventually.equal( t )
+            .and.notify( done )
+    } )
+
+    it( 'should not be able to get non existing trackers', ( done ) => {
+        const d = new TrackerDictionary()
+
+        expect( d.getTracker( 'foo' ) )
+            .to.eventually.be.rejectedWith( 'Tracker not found' )
+            .and.notify( done )
+    } )
 } )

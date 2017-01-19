@@ -18,9 +18,7 @@ describe( 'Tracker', () => {
         stub = sinon.spy()
 
         Tracker = inject( {
-            './../../service/trackingService': {
-                track: stub,
-            },
+            './../../service/trackingService': stub,
         } ).Tracker
     } )
 
@@ -35,7 +33,7 @@ describe( 'Tracker', () => {
         const event = {}
 
         t.trackEvent( event )
-        expect( stub ).to.have.been.calledWith( event, t )
+        expect( stub ).to.have.been.calledWith( t, event )
     } )
 
     it( 'Should not have a cross-domain linker', () => {

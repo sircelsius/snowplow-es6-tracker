@@ -13,6 +13,7 @@
   },
   "plugins": [ 
     "transform-runtime",
-    "es6-promise"
+    "es6-promise",
+    "transform-object-rest-spread"
   ]
 }
