@@ -19,6 +19,12 @@ The aim of this is to have a JS tracker for Snowplow that uses a more modern sta
   * Webpack bundling
   * Karma tests
 
+It also aims (in the future) to allow developers to use things such as:
+  * [tree-shaking](http://www.2ality.com/2015/12/webpack-tree-shaking.html). You can't always get get what you want, but you always get more than you need.
+  * tracking offline users via Service Workers.
+  * bundle Snowplow directly in their apps (instead of fetching the tracker on load, which delays the moment when you can start tracking users).
+  * more unicorns.
+
 ## Usage
 
 `yarn add snowplow-es6-tracker` (or, if you're old school, `npm install --save snowplow-es6-tracker`).
