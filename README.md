@@ -26,7 +26,7 @@ The aim of this is to have a JS tracker for Snowplow that uses a more modern sta
 Somewhere in your app:
 
 ```` js
-import { Dictionary, Tracker, PageView } from 'snowplow-es6-tracker'
+import { Dictionary, Tracker, PageView, StructEvent } from 'snowplow-es6-tracker'
 
 const dict = new Dictionary()
 
