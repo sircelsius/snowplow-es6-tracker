@@ -20,11 +20,17 @@ module.exports = function (config) {
         reporters: [ 'mocha', 'coverage' ], //report results in this format
         webpack: {
             module: {
-                loaders: [{
+                loaders: [
+                {
                     test: /\.js$/,
                     loaders: ['babel', 'eslint'],
-                    exclude: /node_modules/
-                }]
+                    exclude: /node_modules/,
+                },
+                {
+                    test: /\.json$/,
+                    loader: 'json',
+                }
+                ]
             }
         },
         webpackServer: {

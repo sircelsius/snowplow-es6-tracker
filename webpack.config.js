@@ -9,9 +9,13 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.js/,
+                test: /\.js$/,
                 exclude: /node_modules/,
                 loaders: ['babel-loader', 'eslint-loader']
+            },
+            {
+                test: /\.json/,
+                loader: 'json'
             }
         ]
     },

@@ -24,41 +24,45 @@ describe( 'OptionValidator', () => {
 
     it( 'should pass when cookieDomain is a String', () => {
         const opts = Object.assign( {}, DEFAULT_OPTIONS,
-        {
-            appId: 'foo',
-            cookieDomain: 'bar',
-        } )
+            {
+                appId: 'foo',
+                cookieDomain: 'bar',
+            }
+        )
         expect( validateOptions( opts ) )
             .to.equal( true )
     } )
 
     it( 'should pass when cookieDomain is null', () => {
         const opts = Object.assign( {}, DEFAULT_OPTIONS,
-        {
-            appId: 'foo',
-            cookieDomain: null,
-        } )
+            {
+                appId: 'foo',
+                cookieDomain: null,
+            }
+        )
         expect( validateOptions( opts ) )
             .to.equal( true )
     } )
 
     it( 'should pass when userFingerprintSeed is a function', () => {
         const opts = Object.assign( {}, DEFAULT_OPTIONS,
-        {
-            appId: 'foo',
-            userFingerprintSeed: () => 1,
-        } )
+            {
+                appId: 'foo',
+                userFingerprintSeed: () => 1,
+            }
+        )
         expect( validateOptions( opts ) )
             .to.equal( true )
     } )
 
     it( 'should invalidate when post is true and bufferSize is invalid', () => {
         const opts = Object.assign( {}, DEFAULT_OPTIONS,
-        {
-            appId: 'foo',
-            post: true,
-            bufferSize: 'a',
-        } )
+            {
+                appId: 'foo',
+                post: true,
+                bufferSize: 'a',
+            }
+        )
         expect( validateOptions( opts ) )
             .to.equal( 'bufferSize' )
     } )

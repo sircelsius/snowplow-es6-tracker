@@ -1,6 +1,7 @@
 import chai from 'chai'
 import chaiAsPromised from 'chai-as-promised'
 import StructEvent from './../../../../lib/model/event/structEvent'
+import { version } from './../../../../package.json'
 
 chai.use( chaiAsPromised )
 const expect = chai.expect
@@ -29,19 +30,29 @@ describe( 'StructEvent', () => {
     } )
 
     it( 'should produce a valid POST body', ( done ) => {
-        const e = new StructEvent( {}, 'category', 'action', 'label', 'property', 'value' )
+        const e = new StructEvent( {
+            name: 'foo',
+            options: {
+                appId: 'bar',
+                platform: 'baz',
+            },
+        },
+        'category', 'action', 'label', 'property', 'value' )
 
         expect( e.toPostBody() ).to.eventually.deep.equal( {
-            data: {
-                e: 'se',
-                se_ca: 'category',
-                se_ac: 'action',
-                se_la: 'label',
-                se_pr: 'property',
-                se_va: 'value',
-            },
+            e: 'se',
+            se_ca: 'category',
+            se_ac: 'action',
+            se_la: 'label',
+            se_pr: 'property',
+            se_va: 'value',
+            tna: 'foo',
+            aid: 'bar',
+            p: 'baz',
+            stm: e.timestamp,
+            tv: `es6-${ version }`,
         } )
-            .and.notify( done )
+        .and.notify( done )
     } )
 } )
 /* eslint-enable no-unused-expressions */

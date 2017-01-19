@@ -18,13 +18,11 @@ describe( 'TrackingService', () => {
         stub = sinon.spy()
 
         track = inject( {
-            'isomorphic-fetch': {
-                fetch: stub,
-            },
+            'isomorphic-fetch': stub,
         } ).default
     } )
 
-    it( 'Should be instanciated properly', () => {
+    it( 'Should be instanciated properly', ( done ) => {
         const tracker = {
             options: {
                 post: true,
@@ -34,24 +32,29 @@ describe( 'TrackingService', () => {
 
         const event = {
             // eslint-disable-next-line arrow-body-style
-            toPostBody: () => {
-                return {
-                    e: 'yeepee',
-                }
-            },
-        }
-
-        track( event, tracker )
-
-        expect( stub ).to.have.been.calledWith( 'foo/tp2', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application.json',
-            },
-            body: JSON.stringify( {
+            toPostBody: () => Promise.resolve( {
                 e: 'yeepee',
             } ),
-        } )
+        }
+
+        track( tracker, event )
+            .then( () => {
+                expect( stub ).calledWith( 'foo/tp2', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application.json',
+                    },
+                    body: JSON.stringify( {
+                        schema: 'iglu:com.snowplowanalytics.snowplow/payload_data/jsonschema/1-0-3',
+                        data: [
+                            {
+                                e: 'yeepee',
+                            },
+                        ],
+                    } ),
+                } )
+                done()
+            } )
     } )
 } )
