@@ -35,7 +35,7 @@ dict.newTracker( new Tracker( 'myES6Tracker', {
   post: true,
 } ) )
   .then( dict => {
-    dict.getTracker( 'my-website' )
+    dict.getTracker( 'myES6Tracker' )
       .then( tracker => {
         const pv = new PageView( tracker, 'Page Title' )
         return tracker.trackEvent( pv )
@@ -43,7 +43,7 @@ dict.newTracker( new Tracker( 'myES6Tracker', {
       .then( () => dict)
   })
   .then( dict => {
-    dict.getTracker( 'my-website' )
+    dict.getTracker( 'myES6Tracker' )
       .then( tracker => {
         const se = new StructEvent( tracker, 'my-category', 'my-action', 'my-label', 'my-property', 2 )
         return tracker.trackEvent( se )
